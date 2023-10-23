@@ -14,10 +14,11 @@ function App() {
     e.preventDefault();
     try {
       if (location) {
-        const { data } = await axios.get(
+        const res = await fetch(
           `http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=5&appid=${API_KEY}`
         );
 
+        const data = await res.json()
         const lat = data[0]?.lat;
         const lon = data[0]?.lon;
 
